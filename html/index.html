@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0"
+    />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- styles BEGIN -->
+    <link rel="stylesheet" href="/static/normalize.css" />
+    <!-- styles END -->
+
+    <script>
+      var modernBrowser = 'fetch' in window && 'assign' in Object;
+
+      if (!modernBrowser) {
+        var scriptElement = document.createElement('script');
+
+        scriptElement.async = false;
+        scriptElement.src = '/polyfills.bundle.js';
+        document.head.appendChild(scriptElement);
+      }
+    </script>
+    <script>
+      var __preloaded = <$- JSON.stringify(state) $>;
+      window.REDUX_PRELOADED_STATE = __preloaded;
+    </script>
+  </head>
+  <body>
+    <div id="root"><$- html $></div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "env": {
+    "client": {
+      "presets": ["babel-preset-env", "babel-preset-react"],
+      "plugins": [
+        "transform-runtime",
+        "transform-object-rest-spread",
+        "transform-class-properties",
+        "transform-export-extensions",
+        "add-module-exports",
+        "syntax-dynamic-import",
+        "react-hot-loader/babel"
+      ]
+    },
+    "server": {
+      "presets": ["babel-preset-env", "babel-preset-react"],
+      "plugins": [
+        "transform-runtime",
+        "transform-object-rest-spread",
+        "transform-class-properties",
+        "transform-export-extensions",
+        "add-module-exports",
+        "syntax-dynamic-import",
+        "import-require",
+        "react-hot-loader/babel",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "@@": "./client",
+              "@module": "./client/module/",
+              "@util": "./client/util/",
+              "@com": "./client/component/"
+            }
+          }
+        ],
+        [
+          "css-modules-transform",
+          {
+            "generateScopedName": "[local]_[sha1:hash:base64:5]",
+            "preprocessCss": "./build/babel/sass-process",
+            "prepend": ["autoprefixer"],
+            "extensions": [".scss", ".css"]
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -21,15 +21,15 @@ const app = new Koa();
 app.keys = ['portal'];
 
 if (!isPrd()) {
-  app.use(
-    koaWebpack({
-      config: webpackCfg,
-      dev: {},
-      hot: {
-        port: servCfg.hotPort
-      }
-    })
-  );
+  koaWebpack({
+    config: webpackCfg,
+    devMiddleware: {},
+    hotClient: {
+      port: servCfg.hotPort
+    }
+  }).then(middleware => {
+    app.use(middleware);
+  });
 }
 
 app.use(bodyParser());

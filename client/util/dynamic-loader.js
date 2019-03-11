@@ -93,7 +93,11 @@ const importDynamicReducers = () => {
       modules[reducerName] = resolve(key);
     });
   } else {
-    const matched = matchFiles('../module', /(?<!common)\/reducer\.js$/, true);
+    const matched = matchFiles(
+      '../module',
+      new RegExp('(?<!common)/reducer.js$'),
+      true
+    );
 
     modules = Object.keys(matched).reduce((reducers, cur) => {
       const reducerName = camelCase(path.basename(path.dirname(cur)));

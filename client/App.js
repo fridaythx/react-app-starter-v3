@@ -38,4 +38,4 @@ class App extends Component {
   }
 }
 
-export default hot(module)(connect(App));
+export default (module.hot ? hot(module)(connect(App)) : connect(App));
